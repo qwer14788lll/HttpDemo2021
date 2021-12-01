@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arr_send_request">
+        <item>原生:HttpURLConnection</item>
+        <item>第三方框架:OKHttp</item>
+        <item>第三方框架:Retrofit</item>
+    </string-array>
+    <string-array name="arr_data_type">
+        <item>本地网址</item>
+        <item>XML</item>
+        <item>JSON</item>
+    </string-array>
+</resources>
