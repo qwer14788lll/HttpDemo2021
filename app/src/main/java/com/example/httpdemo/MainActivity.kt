@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.httpdemo.databinding.ActivityMainBinding
 import com.example.httpdemo.util.HttpUtil
+import com.example.httpdemo.util.JsonUtil
 import com.example.httpdemo.util.XmlUtil
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -14,7 +15,7 @@ import kotlin.concurrent.thread
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
-    private val ip = "10.72.0.4"
+    private val ip = "10.72.0.3"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +123,25 @@ class MainActivity : AppCompatActivity() {
                 }
             } }
 
-        mBinding.btnJsonJsonObject.setOnClickListener {  }
+        mBinding.btnJsonJsonObject.setOnClickListener { thread {
+            try {
+                //创建OkHttp客户端对象
+                val client = OkHttpClient()
+                //创建Request对象，用来发送HTTP请求
+                val request = Request.Builder()
+                    .url("http://$ip:8080/json/get_data.json")
+                    .build()
+                //发出网络请求，并接收回传的数据
+                val response = client.newCall(request).execute()
+                //数据解析出来
+                val data = response.body?.string()
+                runOnUiThread {
+                    mBinding.textView.text = JsonUtil.parseJsonWithJSONObject(data.toString())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        } }
 
         mBinding.btnJsonGson.setOnClickListener {  }
     }
