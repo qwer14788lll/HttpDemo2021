@@ -29,7 +29,7 @@ class COVID19Activity : AppCompatActivity() {
                     //发出网络请求，并接收回传的数据
                     val response = client.newCall(request).execute()
                     //数据解析出来
-                    val data = response.body?.string()
+                    val data = response.body()?.string()
                     runOnUiThread {
                         mBinding.textView.text = paresJson(data.toString())
                     }

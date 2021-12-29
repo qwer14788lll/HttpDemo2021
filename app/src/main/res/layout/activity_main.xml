@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <Button
         android:id="@+id/btn_get"
@@ -118,7 +118,7 @@
         android:backgroundTint="#4CAF50"
         android:text="JsonObject解析JSON"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/btn_get_retrofit"
         app:layout_constraintEnd_toStartOf="@+id/btn_json_gson"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,5 +136,26 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_json_jsonObject"
         app:layout_constraintTop_toTopOf="@+id/btn_json_jsonObject" />
+
+    <Button
+        android:id="@+id/btn_get_retrofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retrofit Get请求"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_post_retrofit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_post_retrofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retrofit Post请求"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_get_retrofit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_get_retrofit"
+        app:layout_constraintTop_toTopOf="@+id/btn_get_retrofit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

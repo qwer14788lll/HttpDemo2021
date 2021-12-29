@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 
 object JsonUtil {
+
     fun parseJsonWithJSONObject(data: String?) =
         try {
             val jsonArray = JSONArray(data)
