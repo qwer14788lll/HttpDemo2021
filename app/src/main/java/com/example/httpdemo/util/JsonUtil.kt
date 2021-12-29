@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 
 object JsonUtil {
-    fun parseJsonWithJSONObject(data: String) =
+    fun parseJsonWithJSONObject(data: String?) =
         try {
             val jsonArray = JSONArray(data)
             val stringBuilder = StringBuilder()
@@ -31,7 +31,7 @@ object JsonUtil {
             e.printStackTrace().toString()
         }
 
-    fun parseJsonWithGson(data: String): String {
+    fun parseJsonWithGson(data: String?): String {
         val gson = Gson()
         val appList = gson.fromJson(data, App::class.java)
 //        val type = object : TypeToken<List<AppItem>>(){}.type

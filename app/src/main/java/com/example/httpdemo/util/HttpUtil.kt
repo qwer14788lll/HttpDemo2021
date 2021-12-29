@@ -11,8 +11,12 @@ import java.net.URL
 import kotlin.concurrent.thread
 
 object HttpUtil {
-    fun getHttpService() = HttpURLConnectionUtil
 
+    /**
+     * 原生Get请求
+     * @param urlString 要请求的地址
+     * @param listener 网络请求回调接口实现类（匿名类）
+     */
     fun sendHttpRequest(urlString: String, listener: HttpCallbackListener) {
         thread {
             var connection: HttpURLConnection? = null
@@ -46,6 +50,12 @@ object HttpUtil {
         }
     }
 
+    /**
+     * 原生Post请求
+     * @param urlString 要请求的地址
+     * @param parameter post参数
+     * @param listener 网络请求回调接口实现类（匿名类）
+     */
     fun sendHttpRequest(urlString: String, parameter: String, listener: HttpCallbackListener) {
         thread {
             var connection: HttpURLConnection? = null
@@ -85,6 +95,11 @@ object HttpUtil {
         }
     }
 
+    /**
+     * OkHttp框架的Get请求
+     * @param urlString 要请求的地址
+     * @param callback 网络请求回调接口实现类（匿名类）
+     */
     fun sendOkHttpRequest(urlString: String, callback: okhttp3.Callback) {
         //创建OkHttp客户端对象
         val client = OkHttpClient()
@@ -96,5 +111,21 @@ object HttpUtil {
         client.newCall(request).enqueue(callback)
     }
 
-    fun sendOkHttpRequest(urlString: String, fromBody: FormBody, callback: okhttp3.Callback) {}
+    /**
+     * OkHttp框架的Post请求
+     * @param urlString 要请求的地址
+     * @param requestBody post参数对象
+     * @param callback 网络请求回调接口实现类（匿名类）
+     */
+    fun sendOkHttpRequest(urlString: String, requestBody: FormBody, callback: okhttp3.Callback) {
+        //创建OkHttp客户端对象
+        val client = OkHttpClient()
+        //创建Request对象，用来发送HTTP请求
+        val request = Request.Builder()
+            .url(urlString)
+            .post(requestBody)
+            .build()
+        //发出网络请求，并接收回传的数据
+        client.newCall(request).enqueue(callback)
+    }
 }
